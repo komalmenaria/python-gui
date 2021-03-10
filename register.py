@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import tkinter.messagebox as tmsg
 import mysql.connector
+
 #==============================================registration page==========================================
 
 win = Tk()
@@ -78,7 +79,8 @@ def insert():
         mycursor.execute(insert,values)
         # if Passwordvalue.get()==ConfirmPasswordvalue.get():
         mydb.commit()
-        tmsg.showinfo(title="done", message="Account created ")
+        tmsg.showinfo(title="done", message=" Your Account is created Successfully")
+        ok=namevalue.set(""),Phonevalue.set(""),Emailvalue.set(""),Passwordvalue.set(""),ConfirmPasswordvalue.set(""),Paymentvalue.set("")
         win.destroy()
         import twoinone.py
         # else:

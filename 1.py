@@ -31,21 +31,15 @@ def value():
       for (name,password) in mycursor:
           if email==name and seq==password:
               login=True
-              print("loginn suces")
-              tmsg.showinfo(title="done", message=" logged in")
+              print("loginn succes")
+              tmsg.showinfo(title="Done", message="You are logged in")
               roote.destroy()
               import twoinone.py
               break
           else:
               login=False
-
               print("logged in failed")
-              tmsg.showinfo(title="error", message="Account not created ")
-
-
-
-
-
+            #   tmsg.showinfo(title="Error", message="Failed to login ")
 
 
 

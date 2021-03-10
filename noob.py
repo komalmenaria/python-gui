@@ -1,7 +1,7 @@
 from tkinter import*
 import random
 import time
-# from PIL import Image, ImageTk
+from PIL import Image, ImageTk
 import tkinter.messagebox as tmsg
 import mysql.connector
 
@@ -44,7 +44,7 @@ def clrdisplay():
 
 def eqals():
     global operator
-    sumup=eval(operator)
+    sumup=str(eval(operator))
 
     text_Input.set(sumup)
     operator = ""
@@ -68,13 +68,13 @@ def Ref():
     costofcheeseburger = cochee*50
     costofdrinks = codr*35
 
-    costofmeal = str('%.2f'% (costoffries +  costoflargefries + costofburger + costoffilet + costofcheeseburger + costofdrinks))
+    costofmeal = "Rs.",str('%.2f'% (costoffries +  costoflargefries + costofburger + costoffilet + costofcheeseburger + costofdrinks))
     PayTax=((costoffries +  costoflargefries + costofburger + costoffilet +  costofcheeseburger + costofdrinks)*0.33)
     Totalcost=(costoffries +  costoflargefries + costofburger + costoffilet  + costofcheeseburger + costofdrinks)
     Ser_Charge=((costoffries +  costoflargefries + costofburger + costoffilet + costofcheeseburger + costofdrinks)/99)
-    Service=str('%.2f'% Ser_Charge)
-    OverAllCost=str( PayTax + Totalcost + Ser_Charge)
-    PaidTax=str('%.2f'% PayTax)
+    Service="Rs.",str('%.2f'% Ser_Charge)
+    OverAllCost="Rs.",str( PayTax + Totalcost + Ser_Charge)
+    PaidTax="Rs.",str('%.2f'% PayTax)
 
     Service_Charge.set(Service)
     cost.set(costofmeal)
@@ -84,25 +84,12 @@ def Ref():
     
     mydb = mysql.connector.connect(host="localhost", user="root", password="", database="pp")
     mycursor = mydb.cursor()
-    insert = ("INSERT INTO  bils (orde,fries,lunch,burger,pizza,cheese,drinks,cost,servicecharge,tax,subtotal,total) VALUES  (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
-    values = [rand.get(),Fries.get(),Largefries.get(),Burger.get(),Filet.get(),Cheese_burger.get(),(Drinks.get()),cost.get(),Service_Charge.get(),Tax.get(),Subtotal.get(),Total.get()]
+    insert = ("INSERT INTO  'bill' ('order','fries','lunch','burger','pizza','cheese','drinks','cost','servicecharge','tax','subtotal','total') VALUES  (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")   
+    values = [rand.get(),Fries.get(),Largefries.get(),Burger.get(),Filet.get(),Cheese_burger.get(),Drinks.get(),cost.get(),Service_Charge.get(),Tax.get(),Subtotal.get(),Total.get()]
     mycursor.execute(insert,values)
-    print(values)
+       
     mydb.commit()
-    tmsg.showinfo("Notification","Your order is received")
 
-rand = StringVar()
-Fries = StringVar()
-Largefries = StringVar()
-Burger = StringVar()
-Filet = StringVar()
-Cheese_burger = StringVar()
-Drinks = StringVar()
-cost = StringVar()
-Service_Charge = StringVar()
-Tax = StringVar()
-Subtotal = StringVar()
-Total = StringVar()
 
 def qexit():
     root.destroy()
@@ -175,7 +162,18 @@ Division.grid(row=5,column=3)
 
 
 #---------------------------------------------------------------------------------------
-
+rand = StringVar()
+Fries = StringVar()
+Largefries = StringVar()
+Burger = StringVar()
+Filet = StringVar()
+Cheese_burger = StringVar()
+Drinks = StringVar()
+cost = StringVar()
+Service_Charge = StringVar()
+Tax = StringVar()
+Subtotal = StringVar()
+Total = StringVar()
 
 
 
@@ -305,6 +303,7 @@ root.configure(bg="cyan3")
 def feed():
     root.destroy()
     import feed.py
+   
 btnfeed = Button(f2,text="Feedback here ==>",fg="green4",bg="yellow",font=('ariel', 20 ,'bold'),command=feed)
 btnfeed.grid(columnspan=3)
 root.mainloop()

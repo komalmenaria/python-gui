@@ -18,6 +18,7 @@ def getvals():
         # if Passwordvalue.get()==ConfirmPasswordvalue.get():
         mydb.commit()
         tmsg.showinfo(title="done", message=" Thank you for visiting ")
+        ok=namevar.set(""),emailvar.set(""),commentvar.set("")
 
     
 
