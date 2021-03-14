@@ -7,7 +7,10 @@ roote =Tk()
 roote.title("login page")
 roote.geometry("1500x800")
 
-
+def draw_title_widgets(self):
+		self.icon = tk.Label(self.title_frame, image=coffee_icon1, bg='white')
+		self.icon.grid(row=0, column=0, rowspan=2, padx=(40,3))
+coffee_icon1 = PhotoImage(file='icons/coffee.png')
 #========================function============================================================
 # def value():
     
@@ -27,7 +30,6 @@ def value():
       mycursor = mydb.cursor()
       query =  "SELECT name,password FROM login"
       mycursor.execute(query)
-      # myresult = mycursor.fetchall()
       for (name,password) in mycursor:
           if email==name and seq==password:
               login=True
@@ -83,5 +85,4 @@ Button(f2,text="SignIn",bg="green",font=("Times 20 bold italic"),command=newpage
 roote.configure(bg="cyan3")
 roote.mainloop()
 #=============================================login page end=========================================
-
 
